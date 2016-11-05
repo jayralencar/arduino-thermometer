@@ -21,7 +21,7 @@ void loop() {
     acende(tempInt);
   }
   Serial.println(tempInt);
-  delay(2000);
+  delay(5000);
 }
 
 void acende(int numb){
