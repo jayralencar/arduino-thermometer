@@ -7,7 +7,7 @@ int tempInt,x,y,i,segment[10]={0b00111111,0b00000110,0b01011011,0b01001111,0b011
 //Função que será executada uma vez quando ligar ou resetar o Arduino
 void setup() {
   Serial.begin(9600); // inicializa a comunicação serial
-  for(i=0;i<15;i++){
+  for(i=0;i<16;i++){
     pinMode(i, OUTPUT);
   }
 }
@@ -15,11 +15,12 @@ void setup() {
 //Função que será executada continuamente
 void loop() {
 //  temperatura = (float(analogRead(LM35))*5/(1023))/0.01 ;
-  temperatura = ( 5.0 * analogRead(LM35) * 100.0) / 1024.0;
+  temperatura = (float(analogRead(LM35))*5/(1023))/0.01;
   tempInt = (int) temperatura;
   Serial.print("Temperatura: ");
   if(tempInt<100){
     acende(tempInt);
+    digitalWrite(15,tempInt>30?HIGH:LOW);
   }
   Serial.println(tempInt);
   delay(5000);
